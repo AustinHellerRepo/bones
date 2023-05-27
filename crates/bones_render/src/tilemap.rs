@@ -60,10 +60,11 @@ impl TileLayer {
     /// Set the tile at the given position, to a certain entity.
     pub fn set(&mut self, pos: UVec2, entity: Option<Entity>) {
         let idx = self.idx(pos).expect("Tile pos out of bounds");
+        let tiles_length = self.tiles.len();
         *self.tiles.get_mut(idx).unwrap_or_else(|| {
             panic!(
-                "Tile pos out of range of tile size: pos {:?} size {:?}",
-                pos, self.grid_size
+                "Tile pos out of range of tile size: pos {:?} size {:?} idx {:?} self.tiles.len {:?}",
+                pos, self.grid_size, idx, tiles_length
             )
         }) = entity;
     }
